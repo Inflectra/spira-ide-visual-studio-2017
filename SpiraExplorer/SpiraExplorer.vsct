@@ -15,7 +15,7 @@
       </Button>
     </Buttons>
     <Bitmaps>
-      <Bitmap guid="imgSpira" href=".\Resources\img_Spira_24b.bmp" usedList="SpiraLogo" />
+      <Bitmap guid="imgSpira" href=".\Resources\2_bmp.bmp" usedList="SpiraLogo" />
     </Bitmaps>
   </Commands>
   <Symbols>
