@@ -972,15 +972,21 @@ namespace Inflectra.SpiraTest.IDEIntegration.VisualStudio2012.Forms
 		{
 			try
 			{
-                this.btnRefresh.IsEnabled = true;
                 this.btnNewTask.IsEnabled = true;
+                this.btnAutoRefresh.IsEnabled = true;
                 //start a timer if we haven't already
                 if(this.refreshTimer == null)
                 {
                     //setup the timer
                     this.refreshTimer = new System.Timers.Timer(TimerWait);
                     //have the timer refresh when called
-                    this.refreshTimer.Elapsed += (s, j) =>  this.Dispatcher.Invoke(() => { this.refresh(null); });
+                    this.refreshTimer.Elapsed += (s, j) => this.Dispatcher.Invoke(() => {
+                        //only refresh if the user has elected to
+                        if (SpiraContext.AutoRefresh)
+                        {
+                            this.refresh(null);
+                        }
+                    });
                     this.refreshTimer.AutoReset = true;
                     this.refreshTimer.Enabled = true;
 
@@ -1008,9 +1014,9 @@ namespace Inflectra.SpiraTest.IDEIntegration.VisualStudio2012.Forms
 				this.barLoading.Visibility = Visibility.Collapsed;
 				this.trvProject.Cursor = System.Windows.Input.Cursors.Arrow;
 				this.trvProject.Items.Refresh();
-				this.btnRefresh.IsEnabled = false;
                 this.btnNewTask.IsEnabled = false;
-			}
+                this.btnAutoRefresh.IsEnabled = false;
+            }
 			catch (Exception ex)
 			{
 				Logger.LogMessage(ex, "noSolutionLoaded()");
@@ -1028,9 +1034,9 @@ namespace Inflectra.SpiraTest.IDEIntegration.VisualStudio2012.Forms
 				this.barLoading.Visibility = Visibility.Collapsed;
 				this.trvProject.Cursor = System.Windows.Input.Cursors.Arrow;
 				this.trvProject.Items.Refresh();
-				this.btnRefresh.IsEnabled = false;
                 this.btnNewTask.IsEnabled = false;
-			}
+                this.btnAutoRefresh.IsEnabled = false;
+            }
 			catch (Exception ex)
 			{
 				Logger.LogMessage(ex, "noProjectsLoaded()");
@@ -1073,10 +1079,13 @@ namespace Inflectra.SpiraTest.IDEIntegration.VisualStudio2012.Forms
 				errorNode.ArtifactTag = exception;
 				errorNode.Parent = nodeToAddTo;
 
-				//Clear existing, add error.
-				nodeToAddTo.Items.Clear();
-				nodeToAddTo.Items.Add(errorNode);
-			}
+                //Clear existing, add error.
+                if (nodeToAddTo.Items.Count == 0)
+                {
+                    nodeToAddTo.Items.Clear();
+                    nodeToAddTo.Items.Add(errorNode);
+                }
+            }
 			catch (Exception ex)
 			{
 				Logger.LogMessage(ex, "clientSave_Connection_ConnectToProjectCompleted()");
