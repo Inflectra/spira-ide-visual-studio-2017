@@ -6,7 +6,7 @@
   xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011"
   xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
     <Metadata>
-        <Identity Id="6fdddea3-588b-4fe1-acb7-9c5b03bccbad" Publisher="Inflectra" Version="5.0.0.160420012" Language="en-US" />
+        <Identity Id="1BBF164A-3381-40CD-B1C6-FCAD086B163A" Publisher="Inflectra" Version="5.0.0.160420012" Language="en-US" />
         <DisplayName>SpiraTeam Explorer</DisplayName>
         <Description xml:space="preserve" >This extension allows you to integrate SpiraPlan with Visual Studio and view assigned Tasks, Requirements, and Incidents from within the VS UI.</Description>
         <MoreInfo>https://www.inflectra.com/</MoreInfo>
