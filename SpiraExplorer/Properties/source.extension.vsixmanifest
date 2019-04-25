@@ -16,7 +16,7 @@
         <PreviewImage>.\Resources\Screenshot.png</PreviewImage>
     </Metadata>
     <Prerequisites>
-        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" />
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
     </Prerequisites>
     <Installation AllUsers="true">
         <InstallationTarget Version="[15.0]" Id="Microsoft.VisualStudio.Pro" />
